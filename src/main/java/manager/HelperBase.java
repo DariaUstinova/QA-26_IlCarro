@@ -1,9 +1,6 @@
 package manager;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,9 +17,25 @@ public class HelperBase {
         WebElement element = wd.findElement(locator);
         element.click();
         element.clear();
+        clearNew(element);
         if(text!=null) {
             element.sendKeys(text);
         }
+    }
+    public void clearNew(WebElement element){
+        element.sendKeys(" ");
+        element.sendKeys(Keys.BACK_SPACE);
+    }
+    public void clearTextField(By locator){
+        WebElement element = wd.findElement(locator);
+        String os = System.getProperty("os.name");
+        if(os.startsWith("Win")){
+            element.sendKeys(Keys.CONTROL, "a");
+        }else{
+            element.sendKeys(Keys.CONTROL, "b");
+        }
+        element.sendKeys(Keys.DELETE);
+
     }
     public void click(By locator){
         wd.findElement(locator).click();
@@ -48,5 +61,12 @@ public class HelperBase {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void submit() {
+        click(By.xpath("//button[@type='submit']"));
+    }
+    public String getMessage() {
+        pause(3000);
+        return wd.findElement(By.cssSelector(".dialog-container>h2")).getText();
     }
 }

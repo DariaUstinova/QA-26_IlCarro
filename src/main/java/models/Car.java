@@ -22,4 +22,8 @@ public class Car {
     private String carRegNumber;
     private double price;
     private String about;
+
+
+
+
 }
