@@ -58,6 +58,7 @@ public class AddNewCarTests extends TestBase{
                 .build();
         app.getHelperCar().openCarForm();
         app.getHelperCar().fillCarForm(car);
+        app.getHelperCar().attachPhoto("C:\\Users\\daria\\Desktop\\Study\\Automation Testing (Mihail)\\GitHubProjects\\QA-26\\QA-26_IlCarro\\Car.jpg");
         app.getHelperCar().submit();
         Assert.assertEquals(app.getHelperCar().getMessage(),car.getManufacture()+" "+car.getModel()+" added successful");
         Assert.assertTrue(app.getHelperCar().getMessage().contains("added successful"));

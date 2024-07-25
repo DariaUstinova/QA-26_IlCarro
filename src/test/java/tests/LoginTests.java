@@ -11,16 +11,21 @@ public class LoginTests extends TestBase {
     public void precondition(){
         if(app.getHelperUser().isLogged()){
             app.getHelperUser().logout();
+            logger.info("User looged out");
         }
     }
 
     @Test
     public void loginSuccess(){
         app.getHelperUser().openLoginForm();
+        logger.info("Login form opened");
         app.getHelperUser().fillLoginForm("test10@test.com", "Codirovka84!");
+        logger.info("Login form filled with email test10@test.com & PWD Codirovka84! ");
         app.getHelperUser().submit();
+        logger.info("Login form submited");
 
        Assert.assertEquals(app.getHelperUser().getMessage(),"Logged in success");
+        logger.info("User logged in");
 //       app.getHelperUser().clickOkButton();
 //        Assert.assertTrue(app.getHelperUser().isLogged());
     }

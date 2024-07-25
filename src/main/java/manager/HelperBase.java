@@ -65,7 +65,7 @@ public class HelperBase {
     public void submit() {
         click(By.xpath("//button[@type='submit']"));
     }
-    public String getMessage() {
+    public String  getMessage() {
         pause(3000);
         return wd.findElement(By.cssSelector(".dialog-container>h2")).getText();
     }
