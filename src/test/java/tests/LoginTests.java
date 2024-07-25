@@ -34,8 +34,11 @@ public class LoginTests extends TestBase {
         User user = new User().withEmail("test10@test.com").withPassword("Codirovka84!");
 
         app.getHelperUser().openLoginForm();
+        logger.info("Login form opened");
         app.getHelperUser().fillLoginForm(user);
+        logger.info("Login form filled with email test10@test.com & PWD Codirovka84! ");
         app.getHelperUser().submit();
+        logger.info("Login form submited");
 
         Assert.assertEquals(app.getHelperUser().getMessage(),"Logged in success");
 //       app.getHelperUser().clickOkButton();
