@@ -36,7 +36,7 @@ public class HelperBase {
         if(os.startsWith("Win")){
             element.sendKeys(Keys.CONTROL, "a");
         }else{
-            element.sendKeys(Keys.CONTROL, "b");
+            element.sendKeys(Keys.COMMAND, "a");
         }
         element.sendKeys(Keys.DELETE);
 
@@ -83,5 +83,17 @@ public class HelperBase {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public boolean isYallaButtonNotActive() {
+        boolean res = isElementPresent(By.cssSelector("button[disabled]"));
+
+        WebElement element = wd.findElement(By.cssSelector("button[type='submit']"));
+        boolean result =  element.isEnabled();
+
+        return res && !result;
+    }
+    public String getErrorText() {
+        pause(3000);
+        return wd.findElement(By.cssSelector("div.error")).getText();
     }
 }
